@@ -1,0 +1,473 @@
+[
+  {
+    "id": "ORD1769789637559",
+    "items": [
+      {
+        "id": 1769789564135,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️ + Teddy 🧸",
+        "price": 540,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 150,
+        "hasTeddy": true
+      }
+    ],
+    "total": 540,
+    "address": "NAME : REDDY\nLocation : Nellore\nNumber : 9959172509",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T16:13:57.559Z"
+  },
+  {
+    "id": "ORD1769789770587",
+    "items": [
+      {
+        "id": 1769789755843,
+        "productName": "Beautiful Couple Names❤ - NANI [Small Normal Bottle] + Heart ❤️",
+        "price": 330,
+        "image": "kanna.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Normal Bottle",
+        "bottlePrice": 40,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 330,
+    "address": "NAME : REDDY\nLocation : Nellore\nNumber : 9959172509",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T16:16:10.587Z"
+  },
+  {
+    "id": "ORD1769789818757",
+    "items": [
+      {
+        "id": 1769789792688,
+        "productName": "ANJALI❤ - NANI [Small Designed Bottle] + Heart ❤️",
+        "price": 390,
+        "image": "anjali.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 390,
+    "address": "NAME : REDDY\nLocation : Nellore\nNumber : 7207506053",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T16:16:58.757Z"
+  },
+  {
+    "id": "ORD1769790195238",
+    "items": [
+      {
+        "id": 1769790114829,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️",
+        "price": 390,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 390,
+    "address": "Name : Sriram\nAddress : Kavali\nLandmark : Near Bus stand",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T16:23:15.238Z"
+  },
+  {
+    "id": "ORD1769790698961",
+    "items": [
+      {
+        "id": 1769790654158,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️",
+        "price": 390,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 390,
+    "address": "Name : Sriram\nAddress : Kavali\nLandmark : Near Bus stand",
+    "phone": "7207506053",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T16:31:38.961Z"
+  },
+  {
+    "id": "ORD1769790965171",
+    "items": [
+      {
+        "id": 1769790942681,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️",
+        "price": 390,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 390,
+    "address": "Sriram , Kavali",
+    "phone": "7207506053",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T16:36:05.171Z"
+  },
+  {
+    "id": "ORD1769791766178",
+    "items": [
+      {
+        "id": 1769791734549,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️",
+        "price": 390,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 390,
+    "address": "Sriram , Kavali , Near Bus stand",
+    "phone": "7207506053",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T16:49:26.178Z"
+  },
+  {
+    "id": "ORD1769792164752",
+    "items": [
+      {
+        "id": 1769792145115,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️",
+        "price": 390,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 390,
+    "address": "Sriram , kavali",
+    "phone": "7207506053",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T16:56:04.752Z"
+  },
+  {
+    "id": "ORD1769792522926",
+    "items": [
+      {
+        "id": 1769792510592,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️",
+        "price": 390,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 390,
+    "address": "Sriram",
+    "phone": "7207506053",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T17:02:02.926Z"
+  },
+  {
+    "id": "ORD1769792754893",
+    "items": [
+      {
+        "id": 1769792744247,
+        "productName": "ANJALI❤ - NANI [Small Designed Bottle]",
+        "price": 340,
+        "image": "anjali.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 0,
+        "hasHeart": false,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 340,
+    "address": "hhakshk",
+    "phone": "7207506053",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T17:05:54.893Z"
+  },
+  {
+    "id": "ORD1769793094721",
+    "items": [
+      {
+        "id": 1769793079888,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle]",
+        "price": 340,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 0,
+        "hasHeart": false,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 340,
+    "address": "harsha",
+    "phone": "7207506053",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T17:11:34.721Z"
+  },
+  {
+    "id": "ORD1769793823307",
+    "items": [
+      {
+        "id": 1769793645427,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️",
+        "price": 390,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 390,
+    "address": "Sriram , Kavali",
+    "phone": "7207506053",
+    "email": "sriramkudumula1@gmail.com",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T17:23:43.307Z"
+  },
+  {
+    "id": "ORD1769794145244",
+    "items": [
+      {
+        "id": 1769794118097,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle]",
+        "price": 340,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 0,
+        "hasHeart": false,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 340,
+    "address": "SRIRAM , KAVALI",
+    "phone": "7207506053",
+    "email": "sriramkudumula1@gmail.com",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T17:29:05.244Z"
+  },
+  {
+    "id": "ORD1769794324863",
+    "items": [
+      {
+        "id": 1769794302993,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️",
+        "price": 390,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 390,
+    "address": "sriram",
+    "phone": "7207506053",
+    "email": "sriramkudumula1@gmail.com",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T17:32:04.863Z"
+  },
+  {
+    "id": "ORD1769794587281",
+    "items": [
+      {
+        "id": 1769794568498,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️",
+        "price": 390,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 0,
+        "hasTeddy": false
+      }
+    ],
+    "total": 390,
+    "address": "sriram",
+    "phone": "7207506053",
+    "email": "sriramkudumula1@gmail.com",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-01-30T17:36:27.283Z"
+  },
+  {
+    "id": "ORD1770806936218",
+    "items": [
+      {
+        "id": 1770806901331,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️ + Teddy 🧸",
+        "price": 540,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 150,
+        "hasTeddy": true
+      }
+    ],
+    "total": 540,
+    "address": "Sriram, Kavali",
+    "phone": "7207506053",
+    "email": "harshavardhan.gandavaram@gmail.com",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-02-11T10:48:56.218Z"
+  },
+  {
+    "id": "ORD1771843372356",
+    "items": [
+      {
+        "id": 1771843355655,
+        "productName": "BUDDY❤ - NANI [Small Designed Bottle] + Heart ❤️ + Teddy 🧸",
+        "price": 540,
+        "image": "buddy.jpg",
+        "quantity": 1,
+        "customText": "NANI",
+        "bottleType": "Small Designed Bottle",
+        "bottlePrice": 100,
+        "letterPrice": 240,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 150,
+        "hasTeddy": true
+      }
+    ],
+    "total": 540,
+    "address": "KAVALI",
+    "phone": "7207506053",
+    "email": "harshavardhan.gandavaram@gmail.com",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-02-23T10:42:52.356Z"
+  },
+  {
+    "id": "ORD1771843532618",
+    "items": [
+      {
+        "id": 1771843481039,
+        "productName": "HARSHA❤ - DHANUSH [Big Special Bottle] + Heart ❤️ + Teddy 🧸",
+        "price": 750,
+        "image": "harsha.jpg",
+        "quantity": 1,
+        "customText": "DHANUSH",
+        "bottleType": "Big Special Bottle",
+        "bottlePrice": 130,
+        "letterPrice": 420,
+        "heartPrice": 50,
+        "hasHeart": true,
+        "teddyPrice": 150,
+        "hasTeddy": true
+      }
+    ],
+    "total": 750,
+    "address": "SRI KALAHASTHI",
+    "phone": "9441242970",
+    "email": "bojjadhanush143@gmail.com",
+    "paymentMethod": "cod",
+    "status": "RECEIVED",
+    "date": "2026-02-23T10:45:32.618Z"
+  }
+]

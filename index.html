@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HARSHA-ARTS - Online Store</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffdd57;
+    }
+
+    .cart-count {
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+      position: absolute;
+      top: -8px;
+      right: -12px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffdd57 0%, #ffa500 100%);
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero h2 {
+      margin-bottom: 10px;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero p {
+      font-size: 1.3em;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 40px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .product {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .product img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .product:hover img {
+      transform: scale(1.05);
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+      font-size: 1.3em;
+      color: #333;
+    }
+
+    .product p {
+      margin: 0 0 15px;
+      color: #28a745;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .product button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 1em;
+      transition: background-color 0.3s;
+      width: 100%;
+    }
+
+    .product button:hover {
+      background-color: #218838;
+    }
+
+    .product button:active {
+      transform: scale(0.98);
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal-content {
+      position: relative;
+      margin: 5% auto;
+      max-width: 90%;
+      max-height: 80%;
+      text-align: center;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 70vh;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .modal-info {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: inline-block;
+      min-width: 300px;
+    }
+
+    .modal-info h2 {
+      margin: 0 0 10px;
+      color: #333;
+    }
+
+    .modal-info p {
+      margin: 10px 0;
+      font-size: 1.3em;
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    /* Bottle Selection Styles */
+    .bottle-selection-container {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .bottle-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .bottle-option {
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s;
+      background: white;
+    }
+
+    .bottle-option img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 5px;
+    }
+
+    .bottle-option:hover {
+      border-color: #aaa;
+    }
+
+    .bottle-option.selected {
+      border-color: #28a745;
+      background-color: #e8f5e9;
+      box-shadow: 0 0 15px rgba(40, 167, 69, 0.3);
+      transform: scale(1.05);
+      z-index: 10;
+    }
+
+    .bottle-option.selected::after {
+      content: '✓';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #28a745;
+      color: white;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .bottle-option.recommended {
+      border-color: #ffdd57;
+      border-width: 2px;
+    }
+
+    .recommend-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffdd57;
+      color: #333;
+      font-size: 0.7em;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: bold;
+      display: none;
+      white-space: nowrap;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .bottle-option.recommended .recommend-badge {
+      display: block;
+    }
+
+    .bottle-name {
+      font-size: 0.85em;
+      font-weight: bold;
+      color: #333;
+      margin-top: 5px;
+    }
+
+    .bottle-price {
+      color: #28a745;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+
+    .bottle-desc {
+      font-size: 0.7em;
+      color: #666;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close:hover {
+      color: #ffdd57;
+    }
+
+    /* Cart Section */
+    #cart-section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    #cart-section.active {
+      display: block;
+    }
+
+    #cart-section h2 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #ffdd57;
+      padding-bottom: 10px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      gap: 15px;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .cart-item-info {
+      flex: 1;
+      text-align: left;
+    }
+
+    .cart-item-info h4 {
+      margin: 0 0 5px;
+      color: #333;
+    }
+
+    .cart-item-info p {
+      margin: 0;
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-item-quantity button {
+      background: #333;
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .cart-item-quantity button:hover {
+      background: #555;
+    }
+
+    .remove-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background: #c82333;
+    }
+
+    .cart-total {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 2px solid #333;
+      text-align: right;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .cart-actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .cart-actions button {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .checkout-btn {
+      background: #28a745;
+      color: white;
+    }
+
+    .checkout-btn:hover {
+      background: #218838;
+    }
+
+    .clear-cart-btn {
+      background: #dc3545;
+      color: white;
+    }
+
+    .clear-cart-btn:hover {
+      background: #c82333;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #333;
+      color: white;
+      padding: 30px;
+      margin-top: 40px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      font-size: 1.2em;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      .products {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        padding: 20px 10px;
+      }
+
+      .cart-item {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cart-item-info {
+        text-align: center;
+      }
+    }
+
+    .custom-crafts-text {
+      font-weight: bold;
+      font-size: 1.2em;
+      background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: rainbow-text 5s linear infinite;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 10px auto;
+      text-align: center;
+      font-family: 'Verdana', sans-serif;
+      width: fit-content;
+      display: inline-block;
+    }
+
+    @keyframes rainbow-text {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: 100% 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .custom-crafts-text {
+        font-size: 0.9em;
+      }
+    }
+
+    /* Checkout Section */
+    #checkout-section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      display: none;
+      animation: fadeIn 0.3s;
+    }
+
+    #checkout-section.active {
+      display: block;
+    }
+
+    #checkout-section h2 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #ffdd57;
+      padding-bottom: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group h3 {
+      margin-bottom: 15px;
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      resize: vertical;
+      font-family: inherit;
+      font-size: 1em;
+    }
+
+    .payment-options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .payment-option {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid #eee;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+
+    .payment-option:hover {
+      background: #f0f0f0;
+      border-color: #ccc;
+    }
+
+    .payment-option input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #28a745;
+    }
+
+    #online-payment-details {
+      margin-top: 15px;
+      padding: 20px;
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+      border-radius: 5px;
+      color: #2e7d32;
+    }
+
+    .order-summary {
+      background: #333;
+      color: white;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 25px;
+      text-align: right;
+    }
+
+    .order-summary h3 {
+      margin: 0;
+      color: #fff;
+    }
+
+    .checkout-actions {
+      display: flex;
+      gap: 15px;
+    }
+
+    .checkout-actions button {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .back-btn {
+      background: #6c757d;
+      color: white;
+    }
+
+    .back-btn:hover {
+      background: #5a6268;
+    }
+
+    .place-order-btn {
+      background: #28a745;
+      color: white;
+    }
+
+    .place-order-btn:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>HARSHA-ARTS</h1>
+    <nav>
+      <a href="#" onclick="showProducts()">Home</a>
+      <a href="#" onclick="showProducts()">Products</a>
+      <a href="#" onclick="showCart()">
+        Cart 🛒 <span class="cart-count" id="cart-count">0</span>
+      </a>
+      <a href="#contact" onclick="scrollToContact()">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Welcome to HARSHA-ARTS!</h2>
+    <p>Beautiful Pencil Carvings - Unique Personalized Art</p>
+    <div class="custom-crafts-text" style="font-size: 1.5em; display: block; margin-top: 15px;">Customized Crafts
+      Available</div>
+  </div>
+
+  <div
+    style="text-align: center; margin: 20px auto; max-width: 800px; padding: 15px; background: #e8f5e9; border-radius: 8px; color: #2e7d32; font-weight: bold; font-size: 1.2em; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <p style="margin: 0;">Pricing: Rs. 60 per letter (Bottle charges included)</p>
+  </div>
+
+  <section class="products" id="products-section">
+    <div class="loading">Loading products...</div>
+  </section>
+
+  <section id="cart-section">
+    <h2>Your Shopping Cart</h2>
+    <div id="cart-items">
+      <div class="empty-cart">Your cart is empty</div>
+    </div>
+    <div class="cart-total" id="cart-total" style="display: none;">
+      Total: Rs.<span id="total-amount">0</span>
+    </div>
+    <div class="cart-actions" id="cart-actions" style="display: none;">
+      <button class="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
+      <button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+    </div>
+  </section>
+
+  <section id="checkout-section">
+    <h2>Checkout</h2>
+    <div class="checkout-form">
+      <!-- Delivery Details -->
+      <div class="form-group">
+        <h3>1. Customer Details</h3>
+        <label for="customer-email">Email Address:</label>
+        <input type="email" id="customer-email" placeholder="Enter your email for order confirmation..."
+          style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; margin-bottom: 15px;">
+
+        <label for="customer-phone">Mobile Number:</label>
+        <input type="tel" id="customer-phone" placeholder="Enter your mobile number..."
+          style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; margin-bottom: 15px;">
+
+        <label for="address">Delivery Address / Location:</label>
+        <textarea id="address" placeholder="Enter your full name and detailed address with landmark..."
+          rows="4"></textarea>
+      </div>
+
+      <!-- Payment Options -->
+      <div class="form-group">
+        <h3>2. Payment Method</h3>
+        <div class="payment-options">
+          <label class="payment-option">
+            <input type="radio" name="payment" value="cod" checked onchange="togglePaymentDetails()">
+            <span>Cash on Delivery (COD)</span>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="online" onchange="togglePaymentDetails()">
+            <span>Online Payment (PhonePe / Google Pay)</span>
+          </label>
+        </div>
+        <div id="online-payment-details" style="display: none;">
+          <p><strong>Pay via UPI:</strong></p>
+          <p>PhonePe / GPay Number: <strong>+91 99088 17179</strong></p>
+          <p>Scan QR or Pay to the number above.</p>
+          <p style="font-size: 0.9em; margin-top: 10px;">* Please take a screenshot of the payment and share it on
+            WhatsApp to the same number after placing the order.</p>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="order-summary">
+        <h3>Total to Pay: Rs.<span id="checkout-total">0</span></h3>
+      </div>
+
+      <div class="checkout-actions">
+        <button class="back-btn" onclick="showCart()">Back to Cart</button>
+        <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="success-section"
+    style="max-width: 800px; margin: 40px auto; padding: 40px; background: #fff; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); display: none; text-align: center; animation: slideIn 0.5s;">
+    <div style="font-size: 60px; color: #28a745; margin-bottom: 20px;">✓</div>
+    <h2 style="color: #333; margin-bottom: 10px;">Order Placed Successfully!</h2>
+    <p style="color: #666; font-size: 1.1em; margin-bottom: 30px;">
+      Thank you for your purchase. A confirmation message has been sent to your email and WhatsApp.
+    </p>
+
+    <div id="success-details"
+      style="background: #f8f9fa; padding: 25px; border-radius: 8px; text-align: left; margin-bottom: 30px; border: 1px solid #eee;">
+      <h3 style="margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Order Summary</h3>
+      <p><strong>Order ID:</strong> <span id="success-order-id" style="color: #28a745; font-weight: bold;"></span></p>
+      <p><strong>Total Amount:</strong> Rs.<span id="success-total"></span></p>
+      <p><strong>Items:</strong></p>
+      <ul id="success-items-list" style="padding-left: 20px; color: #555;"></ul>
+    </div>
+
+    <div style="display: flex; gap: 15px; justify-content: center;">
+      <button onclick="showProducts()"
+        style="padding: 15px 30px; background: #28a745; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">Continue
+        Shopping</button>
+      <button onclick="window.print()"
+        style="padding: 15px 30px; background: #eee; color: #333; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">Print
+        Receipt</button>
+    </div>
+  </section>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+      <img id="modal-image" src="" alt="">
+      <div class="modal-info">
+        <h2 id="modal-title"></h2>
+
+        <!-- Step 1: Text Input -->
+        <div id="modal-step-1">
+          <div style="margin: 20px 0; text-align: left;">
+            <label for="custom-text" style="display: block; margin-bottom: 5px; color: #555;">Enter Name/Text to
+              Carve:</label>
+            <input type="text" id="custom-text" placeholder="Ex: Harsha" oninput="updateLetterCost()"
+              style="width: 100%; padding: 10px; font-size: 1.1em; border: 1px solid #ddd; border-radius: 5px;">
+            <p style="font-size: 0.9em; color: #777; margin-top: 5px;" id="letter-count-display">* 0 letters</p>
+
+            <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+              <label style="display: flex; align-items: center; cursor: pointer;">
+                <input type="checkbox" id="add-heart-shape" onchange="updateLetterCost()"
+                  style="width: 18px; height: 18px; margin-right: 10px; accent-color: #28a745;">
+                <span style="font-size: 1em; color: #333; font-weight: bold;">Add Heart Shape ❤️ (+ Rs. 50)</span>
+              </label>
+              <label style="display: flex; align-items: center; cursor: pointer;">
+                <input type="checkbox" id="add-teddy-box" onchange="updateLetterCost()"
+                  style="width: 18px; height: 18px; margin-right: 10px; accent-color: #ffaa00;">
+                <span style="font-size: 1em; color: #333; font-weight: bold;">Add Teddy Box 🧸 (+ Rs. 150)</span>
+              </label>
+            </div>
+          </div>
+          <p id="letters-price" style="font-size: 1.2em; color: #555;">Letters Cost: Rs. 0</p>
+          <button class="product button" onclick="goToBottleSelection()" id="next-btn">Next: Select Bottle</button>
+        </div>
+
+        <!-- Step 2: Bottle Selection -->
+        <div id="modal-step-2" class="bottle-selection-container">
+          <h3 style="margin: 0; color: #333;">Select Bottle Type</h3>
+          <p id="recommendation-text"
+            style="color: #ffaa00; font-size: 0.9em; margin: 5px 0 10px; font-weight: normal;"></p>
+
+          <div class="bottle-options">
+            <!-- 1. Small Designed (First Pinned) -->
+            <div class="bottle-option" id="bottle-opt-1" onclick="selectBottle(1)">
+              <div class="recommend-badge">Recommended</div>
+              <img src="bottle_small_design.jpg" alt="Small Designed">
+              <div class="bottle-name">Small Designed</div>
+              <div class="bottle-price">Rs. 100</div>
+              <div class="bottle-desc">w/ Wishing Letter</div>
+            </div>
+
+            <!-- 2. Big Special (Second Pinned) -->
+            <div class="bottle-option" id="bottle-opt-2" onclick="selectBottle(2)">
+              <div class="recommend-badge">Recommended</div>
+              <img src="bottle_big_special.jpg" alt="Big Special">
+              <div class="bottle-name">Big Special</div>
+              <div class="bottle-price">Rs. 130</div>
+              <div class="bottle-desc">Special Design</div>
+            </div>
+
+            <!-- 3. Small Normal (Third Pinned) -->
+            <div class="bottle-option" id="bottle-opt-3" onclick="selectBottle(3)">
+              <div class="recommend-badge">Recommended</div>
+              <img src="bottle_small_normal.jpg" alt="Small Normal">
+              <div class="bottle-name">Small Normal</div>
+              <div class="bottle-price">Rs. 40</div>
+              <div class="bottle-desc">Standard</div>
+            </div>
+          </div>
+
+          <div
+            style="text-align: right; margin-bottom: 15px; font-size: 0.9em; color: #555; background: #fafafa; padding: 10px; border-radius: 5px;">
+            <div>Letters (<span id="final-letter-count">0</span>): Rs. <span id="final-letter-cost">0</span></div>
+            <div id="summary-heart-row" style="display:none; color: #d63384; font-weight: bold;">Heart Shape: Rs. 50
+            </div>
+            <div id="summary-teddy-row" style="display:none; color: #d35400; font-weight: bold;">Teddy Box: Rs. 150
+            </div>
+            <div>Bottle: Rs. <span id="final-bottle-cost">0</span></div>
+            <div
+              style="font-size: 1.3em; color: #28a745; font-weight: bold; margin-top: 5px; border-top: 1px solid #eee; padding-top: 5px;">
+              Total: Rs. <span id="final-total">0</span>
+            </div>
+          </div>
+
+          <div class="step-actions" style="display: flex; gap: 10px;">
+            <button class="back-btn" onclick="backToText()"
+              style="flex: 1; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Back</button>
+            <button class="product button" onclick="addToCartFromModal()" id="add-cart-btn" style="flex: 2;">Add to
+              Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div id="contact-info">
+      <h3>Contact Us</h3>
+      <p>Email: <a href="mailto:harshavardhan.gandavaram@gmail.com"
+          style="color: #ffdd57; text-decoration: none;">harshavardhan.gandavaram@gmail.com</a></p>
+      <p>Mobile: <a href="tel:9908817179" style="color: #ffdd57; text-decoration: none;">+91 99088 17179</a></p>
+    </div>
+    <div style="margin-top: 20px; border-top: 1px solid #555; padding-top: 20px; font-size: 0.9em; opacity: 0.8;">
+      <p>© 2025 HARSHA-ARTS. All rights reserved. | <a href="/admin.html"
+          style="color: #666; text-decoration: none;">Admin</a></p>
+      <p>Handcrafted Pencil Art | Custom Orders Available</p>
+    </div>
+  </footer>
+
+  <!-- Firebase Configuration -->
+  <script type="module" src="firebase-config.js"></script>
+
+  <script>
+    const API_URL = 'http://localhost:3000/api';
+    const USER_ID = 'user_' + Date.now(); // In production, use proper authentication
+    let currentProducts = [];
+    let currentCart = [];
+    let currentModalProduct = null;
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProducts();
+      loadCart();
+    });
+
+    // Load products from backend
+    async function loadProducts() {
+      try {
+        const response = await fetch(`${API_URL}/products`);
+        const data = await response.json();
+
+        if (data.success) {
+          currentProducts = data.products;
+          displayProducts(data.products);
+        }
+      } catch (error) {
+        console.error('Error loading products:', error);
+        document.getElementById('products-section').innerHTML =
+          '<div class="loading">Error loading products. Please make sure the server is running.</div>';
+      }
+    }
+
+    // Display products
+    function displayProducts(products) {
+      const productsSection = document.getElementById('products-section');
+      productsSection.innerHTML = '';
+
+      products.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product';
+        productDiv.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" onclick="openModal('${product.image}', '${product.name}')">
+          <h3>${product.name}</h3>
+          <button onclick="openModal('${product.image}', '${product.name}')">Customize & Buy</button>
+        `;
+        productsSection.appendChild(productDiv);
+      });
+    }
+
+    // Open image modal
+    function openModal(image, name) {
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modal-image');
+      const modalTitle = document.getElementById('modal-title');
+
+      modalImage.src = image;
+      modalTitle.textContent = name;
+
+      // Reset State
+      document.getElementById('custom-text').value = '';
+      document.getElementById('add-heart-shape').checked = false;
+      document.getElementById('add-teddy-box').checked = false;
+      currentModalProduct = { name, image };
+
+      backToText(); // Go to step 1
+      updateLetterCost(); // Reset costs
+
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Step 1: Update Letter Cost
+    function updateLetterCost() {
+      const text = document.getElementById('custom-text').value; // Keep original with spaces
+      // Logic: "Pricing: Rs. 60 per letter"
+      const letters = text.replace(/\s/g, '').length;
+      const letterCost = letters * 60;
+
+      const isHeart = document.getElementById('add-heart-shape').checked;
+      const heartCost = isHeart ? 50 : 0;
+
+      const isTeddy = document.getElementById('add-teddy-box').checked;
+      const teddyCost = isTeddy ? 150 : 0;
+
+      const totalStep1 = letterCost + heartCost + teddyCost;
+
+      document.getElementById('letter-count-display').textContent = `* ${letters} letters (@ Rs. 60/ea)`;
+
+      let priceText = `Letters Cost: Rs. ${letterCost}`;
+      if (isHeart) {
+        priceText += ` + Heart: Rs. 50`;
+      }
+      if (isTeddy) {
+        priceText += ` + Teddy: Rs. 150`;
+      }
+      document.getElementById('letters-price').textContent = priceText;
+
+      return { letters, letterCost, heartCost, isHeart, teddyCost, isTeddy };
+    }
+
+    // Go to Step 2: Bottle Selection
+    function goToBottleSelection() {
+      const { letters } = updateLetterCost();
+      if (letters === 0) {
+        alert("Please enter a name or text first.");
+        return;
+      }
+
+      document.getElementById('modal-step-1').style.display = 'none';
+      document.getElementById('modal-step-2').style.display = 'block';
+
+      // Recommendation Logic
+      const opts = [
+        document.getElementById('bottle-opt-1'),
+        document.getElementById('bottle-opt-2'),
+        document.getElementById('bottle-opt-3')
+      ];
+
+      // Reset recommendations
+      opts.forEach(opt => opt.classList.remove('recommended'));
+      let recommendedId = 1; // Default
+      let recText = "";
+
+      if (letters >= 1 && letters <= 7) {
+        // Recommend Small
+        document.getElementById('bottle-opt-1').classList.add('recommended');
+        document.getElementById('bottle-opt-3').classList.add('recommended');
+        recText = "Recommended: Small Bottles (fits 1-7 letters)";
+        recommendedId = 1; // Default select Designed Small
+      } else {
+        // Recommend Big (8-14+)
+        document.getElementById('bottle-opt-2').classList.add('recommended');
+        recText = "Recommended: Big Bottle (fits 8+ letters)";
+        recommendedId = 2;
+      }
+
+      document.getElementById('recommendation-text').textContent = recText;
+
+      // Auto select the first recommended or previous selection? 
+      // Let's auto-select the best option (Designed Small or Big Special)
+      selectBottle(recommendedId);
+    }
+
+    function backToText() {
+      document.getElementById('modal-step-1').style.display = 'block';
+      document.getElementById('modal-step-2').style.display = 'none';
+    }
+
+    // Step 2: Select Bottle
+    let currentSelectedBottle = null;
+
+    function selectBottle(id) {
+      // Bottle Types Data
+      const bottles = {
+        1: { name: "Small Designed Bottle", price: 100, cost: 100 },
+        2: { name: "Big Special Bottle", price: 130, cost: 130 },
+        3: { name: "Small Normal Bottle", price: 40, cost: 40 }
+      };
+
+      const bottle = bottles[id];
+      currentSelectedBottle = bottle;
+
+      // UI Update
+      [1, 2, 3].forEach(i => {
+        const el = document.getElementById(`bottle-opt-${i}`);
+        if (i === id) el.classList.add('selected');
+        else el.classList.remove('selected');
+      });
+
+      // Price Update
+      const { letters, letterCost, heartCost, isHeart, teddyCost, isTeddy } = updateLetterCost();
+      const total = letterCost + heartCost + teddyCost + bottle.price;
+
+      document.getElementById('final-letter-count').textContent = letters;
+      document.getElementById('final-letter-cost').textContent = letterCost;
+
+      const heartRow = document.getElementById('summary-heart-row');
+      if (isHeart) heartRow.style.display = 'block';
+      else heartRow.style.display = 'none';
+
+      const teddyRow = document.getElementById('summary-teddy-row');
+      if (isTeddy) teddyRow.style.display = 'block';
+      else teddyRow.style.display = 'none';
+
+      document.getElementById('final-bottle-cost').textContent = bottle.price;
+      document.getElementById('final-total').textContent = total;
+    }
+
+    // Add to cart from modal
+    function addToCartFromModal() {
+      if (!currentSelectedBottle) {
+        alert("Please select a bottle type.");
+        return;
+      }
+
+      const { letters, letterCost, heartCost, isHeart, teddyCost, isTeddy } = updateLetterCost();
+      const text = document.getElementById('custom-text').value;
+      const total = letterCost + heartCost + teddyCost + currentSelectedBottle.price;
+
+      let displayName = `${currentModalProduct.name} - ${text} [${currentSelectedBottle.name}]`;
+      if (isHeart) displayName += ` + Heart ❤️`;
+      if (isTeddy) displayName += ` + Teddy 🧸`;
+
+      const cartItem = {
+        id: Date.now(),
+        productName: displayName,
+        price: total,
+        image: currentModalProduct.image,
+        quantity: 1,
+        // Detailed fields
+        customText: text,
+        bottleType: currentSelectedBottle.name,
+        bottlePrice: currentSelectedBottle.price,
+        letterPrice: letterCost,
+        heartPrice: heartCost,
+        hasHeart: isHeart,
+        teddyPrice: teddyCost,
+        hasTeddy: isTeddy
+      };
+
+      // Optimistically add to local cart
+      currentCart.push(cartItem);
+      updateCartDisplay();
+      closeModal();
+      showCart();
+      showNotification("Added to Cart!");
+
+      // Attempt to sync with backend if available (Optional, using simplified data)
+      // addToCart(displayName, total, currentModalProduct.image).catch(e => console.log("Backend sync skipped"));
+    }
+
+    // Close modal
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal on outside click
+    window.onclick = function (event) {
+      const modal = document.getElementById('imageModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+
+
+
+    // Add to cart
+    async function addToCart(productName, price, image) {
+      try {
+        const response = await fetch(`${API_URL}/cart/${USER_ID}/add`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ productName, price, image })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          currentCart = data.cart;
+          updateCartDisplay();
+          showNotification(`${productName} added to cart!`);
+        }
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+        alert('Error adding to cart. Please make sure the server is running.');
+      }
+    }
+
+    // Load cart from backend
+    async function loadCart() {
+      try {
+        const response = await fetch(`${API_URL}/cart/${USER_ID}`);
+        const data = await response.json();
+
+        if (data.success) {
+          currentCart = data.cart;
+          updateCartDisplay();
+        }
+      } catch (error) {
+        console.error('Error loading cart:', error);
+      }
+    }
+
+    // Update cart display
+    function updateCartDisplay() {
+      const cartCount = document.getElementById('cart-count');
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      const totalAmount = document.getElementById('total-amount');
+      const cartActions = document.getElementById('cart-actions');
+
+      // Update cart count
+      const totalItems = currentCart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCount.textContent = totalItems;
+
+      // Update cart items
+      if (currentCart.length === 0) {
+        cartItems.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+        cartTotal.style.display = 'none';
+        cartActions.style.display = 'none';
+        return;
+      }
+
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      currentCart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const cartItemDiv = document.createElement('div');
+        cartItemDiv.className = 'cart-item';
+        cartItemDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.productName}">
+          <div class="cart-item-info">
+            <h4>${item.productName}</h4>
+            <p>Rs.${item.price} × ${item.quantity} = Rs.${itemTotal}</p>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+        `;
+        cartItems.appendChild(cartItemDiv);
+      });
+
+      totalAmount.textContent = total;
+      cartTotal.style.display = 'block';
+      cartActions.style.display = 'flex';
+    }
+
+    // Remove from cart
+    async function removeFromCart(itemId) {
+      try {
+        const response = await fetch(`${API_URL}/cart/${USER_ID}/remove/${itemId}`, {
+          method: 'DELETE'
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          currentCart = data.cart;
+          updateCartDisplay();
+          showNotification('Item removed from cart');
+        }
+      } catch (error) {
+        console.error('Error removing from cart:', error);
+      }
+    }
+
+    // Clear cart
+    async function clearCart() {
+      if (!confirm('Are you sure you want to clear your cart?')) {
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_URL}/cart/${USER_ID}/clear`, {
+          method: 'DELETE'
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          currentCart = data.cart;
+          updateCartDisplay();
+          showNotification('Cart cleared');
+        }
+      } catch (error) {
+        console.error('Error clearing cart:', error);
+      }
+    }
+
+    // Show cart
+    function showCart() {
+      document.getElementById('products-section').style.display = 'none';
+      document.getElementById('checkout-section').classList.remove('active');
+      document.getElementById('cart-section').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Show products
+    function showProducts() {
+      document.getElementById('products-section').style.display = 'grid';
+      document.getElementById('cart-section').classList.remove('active');
+      document.getElementById('checkout-section').classList.remove('active');
+      document.getElementById('success-section').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Scroll to contact
+    function scrollToContact() {
+      const contactSection = document.getElementById('contact-info');
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Go to Checkout Section
+    function goToCheckout() {
+      if (currentCart.length === 0) {
+        showNotification('Your cart is empty!');
+        return;
+      }
+
+      const total = currentCart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      document.getElementById('checkout-total').textContent = total;
+
+      document.getElementById('cart-section').classList.remove('active');
+      document.getElementById('products-section').style.display = 'none';
+      document.getElementById('checkout-section').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Toggle Payment Details
+    function togglePaymentDetails() {
+      const onlinePayment = document.querySelector('input[name="payment"][value="online"]').checked;
+      const detailsDiv = document.getElementById('online-payment-details');
+      detailsDiv.style.display = onlinePayment ? 'block' : 'none';
+    }
+
+    // Place Order
+    async function placeOrder() {
+      const email = document.getElementById('customer-email').value.trim();
+      const phone = document.getElementById('customer-phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+      if (!email) {
+        alert('Please enter your email address.');
+        document.getElementById('customer-email').focus();
+        return;
+      }
+
+      if (!phone) {
+        alert('Please enter your mobile number.');
+        document.getElementById('customer-phone').focus();
+        return;
+      }
+
+      if (!address) {
+        alert('Please enter your delivery address/location.');
+        document.getElementById('address').focus();
+        return;
+      }
+
+      const total = currentCart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      if (paymentMethod === 'online') {
+        const placeBtn = document.querySelector('.place-order-btn');
+        placeBtn.disabled = true;
+        placeBtn.textContent = 'Initiating Payment...';
+
+        try {
+          const response = await fetch(`${API_URL}/payment/initiate`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              userId: USER_ID,
+              amount: total,
+              address: address,
+              phone: phone,
+              email: email,
+              items: currentCart
+            })
+          });
+
+          const data = await response.json();
+          if (data.success && data.url) {
+            window.location.href = data.url;
+          } else {
+            alert('Payment initialization failed. Please try again or use COD.');
+            placeBtn.disabled = false;
+            placeBtn.textContent = 'Place Order';
+          }
+        } catch (error) {
+          console.error('Error initiating payment:', error);
+          alert('Error connecting to payment server.');
+          placeBtn.disabled = false;
+          placeBtn.textContent = 'Place Order';
+        }
+        return;
+      }
+
+      // COD Flow
+      const placeBtn = document.querySelector('.place-order-btn');
+      placeBtn.disabled = true;
+      placeBtn.textContent = 'Placing Order...';
+
+      try {
+        const response = await fetch(`${API_URL}/orders/place`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            items: currentCart,
+            total: total,
+            address: address,
+            phone: phone,
+            email: email,
+            paymentMethod: paymentMethod
+          })
+        });
+
+        const data = await response.json();
+        if (data.success) {
+          // Show Success Section
+          document.getElementById('checkout-section').classList.remove('active');
+          const successSection = document.getElementById('success-section');
+          successSection.style.display = 'block';
+
+          document.getElementById('success-order-id').textContent = data.orderId;
+          document.getElementById('success-total').textContent = total;
+
+          const itemsList = document.getElementById('success-items-list');
+          itemsList.innerHTML = currentCart.map(item => `<li>${item.productName} (Rs.${item.price})</li>`).join('');
+
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          // WhatsApp Trigger (Optional manual sharing)
+          const whatsappNumber = "919908817179";
+          const orderItemsText = currentCart.map(item => `- ${item.productName} (Rs.${item.price})`).join('%0A');
+          const whatsappMsg = `Hi Harsha Arts, I just placed an order!%0A%0AOrder ID: ${data.orderId}%0AEmail: ${email}%0AMobile: ${phone}%0AItems:%0A${orderItemsText}%0ATotal: Rs.${total}%0AAddress: ${address}%0APayment: ${paymentMethod}`;
+
+          // Keep a small button or automatic trigger if they want to confirm on WA
+          console.log('Order Details URL:', `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`);
+
+          // Clear cart
+          await clearCartSilent();
+        } else {
+          alert('Failed to place order. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error placing order:', error);
+        alert('Error connecting to server. Please check your internet.');
+      } finally {
+        placeBtn.disabled = false;
+        placeBtn.textContent = 'Place Order';
+      }
+    }
+
+    async function clearCartSilent() {
+      try {
+        const response = await fetch(`${API_URL}/cart/${USER_ID}/clear`, { method: 'DELETE' });
+        const data = await response.json();
+        if (data.success) {
+          currentCart = data.cart;
+          updateCartDisplay();
+        }
+      } catch (error) {
+        console.error('Error clearing cart:', error);
+      }
+    }
+
+    // Show notification
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: #28a745;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        z-index: 10000;
+        animation: slideIn 0.3s;
+      `;
+      notification.textContent = message;
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s';
+        setTimeout(() => notification.remove(), 300);
+      }, 2000);
+    }
+
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideIn {
+        from {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slideOut {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+
+</body>
+
+</html>
