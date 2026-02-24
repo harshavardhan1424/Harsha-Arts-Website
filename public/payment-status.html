@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Status - HARSHA-ARTS</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .success {
+            color: #28a745;
+        }
+
+        .failure {
+            color: #dc3545;
+        }
+
+        .pending {
+            color: #ffc107;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="status-container">
+        <div class="loader"></div>
+        <h2>Checking Payment Status</h2>
+        <p>Please wait while we verify your payment...</p>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const transactionId = urlParams.get('id');
+
+        async function checkStatus() {
+            if (!transactionId) {
+                showError("No transaction ID found.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/payment/status/${transactionId}`);
+                const data = await response.json();
+
+                if (data.success && data.code === 'PAYMENT_SUCCESS') {
+                    showSuccess();
+                } else if (data.code === 'PAYMENT_PENDING') {
+                    showPending();
+                    // Optional: poll again in 5 seconds
+                    setTimeout(checkStatus, 5000);
+                } else {
+                    showError(data.message || "Payment failed or was cancelled.");
+                }
+            } catch (error) {
+                console.error("Status check error:", error);
+                showError("Error connecting to server. Please check your bank for confirmation.");
+            }
+        }
+
+        function showSuccess() {
+            // Clear cart since payment is successful
+            localStorage.removeItem('cart'); // If you are using local storage
+            // In the main index.html, we should have cleared it, but here is a backup
+
+            document.getElementById('status-container').innerHTML = `
+                <div class="icon success">✓</div>
+                <h2 class="success">Payment Successful!</h2>
+                <p>Thank you for your order. We have received your payment and will start processing your art piece shortly.</p>
+                <p>Transaction ID: ${transactionId}</p>
+                <a href="index.html" class="btn">Back to Home</a>
+            `;
+        }
+
+        function showError(message) {
+            document.getElementById('status-container').innerHTML = `
+                <div class="icon failure">✕</div>
+                <h2 class="failure">Payment Failed</h2>
+                <p>${message}</p>
+                <p>If money was deducted, please contact us with your Transaction ID: ${transactionId}</p>
+                <a href="index.html" class="btn">Back to Shop</a>
+            `;
+        }
+
+        function showPending() {
+            document.getElementById('status-container').innerHTML = `
+                <div class="loader"></div>
+                <h2 class="pending">Payment Pending</h2>
+                <p>Your payment is still being processed by the bank. We will update the status once confirmed.</p>
+                <p>Transaction ID: ${transactionId}</p>
+                <a href="index.html" class="btn">Return to Shop</a>
+            `;
+        }
+
+        // Start checking
+        checkStatus();
+    </script>
+</body>
+
+</html>
